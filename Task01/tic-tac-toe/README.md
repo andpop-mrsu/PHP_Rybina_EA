@@ -14,7 +14,7 @@ composer global require elizaveta-rybina/tic-tac-toe-php
 
 ```bash
 git clone https://github.com/elizaveta-rybina/tic-tac-toe.git
-cd tic-tac-toe
+cd tic-tac-toe 
 composer install
 ```
 
