@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+use TicTacToe\Cli\Controller\GameController;
+use TicTacToe\Cli\View\GameView;
+use TicTacToe\Core\Board;
+use TicTacToe\Core\Game;
+use TicTacToe\Core\GameState;
+use TicTacToe\Core\PlayerManager;
+
+// Автозагрузка для Windows и Linux
+$autoloadPaths = [
+	__DIR__ . '/../../autoload.php',          // Для локальной установки
+	__DIR__ . '/../../../autoload.php',       // Для глобальной установки
+	__DIR__ . '/../vendor/autoload.php',      // Альтернативный путь
+];
+
+foreach ($autoloadPaths as $path) {
+	if (file_exists($path)) {
+		require $path;
+		break;
+	}
+}
+
+if (!class_exists(Game::class)) {
+	die("Error: Autoload failed. Run 'composer install' first.\n");
+}
+
+$board = new Board();
+$state = new GameState();
+$playerManager = new PlayerManager();
+$game = new Game($board, $state, $playerManager);
+
+$view = new GameView($board, $state, $playerManager);
+$controller = new GameController($game, $view);
+
+$controller->start();

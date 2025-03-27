@@ -1,0 +1,44 @@
+{
+	"name": "elizaveta-rybina/tic-tac-toe-php",
+	"description": "A simple console-based Tic-Tac-Toe game in PHP.",
+	"type": "project",
+	"autoload": {
+		"psr-4": {
+			"TicTacToe\\": "src/"
+		},
+		"files": [
+			"src/Cli/Controller/GameController.php",
+			"src/Cli/View/GameView.php"
+		]
+	},
+	"authors": [
+		{
+			"name": "elizaveta-rybina",
+			"email": "liza.rybina@inbox.ru"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": "^8.4.5",
+		"wp-cli/php-cli-tools": "^0.12.4"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "^3.7",
+		"phpunit/phpunit": "^10.5"
+	},
+	"scripts": {
+		"check": [
+			"@phpcs",
+			"@test"
+		],
+		"post-install-cmd": [
+			"chmod +x bin/tictactoe || true"
+		],
+		"phpcs": "phpcs --standard=PSR12 src/",
+		"test": "phpunit",
+		"start": "php bin/tictactoe"
+	},
+	"bin": [
+		"bin/tictactoe"
+	]
+}
