@@ -1,0 +1,14 @@
+{
+	"name": "elizaveta-rybina/calculator-game",
+	"description": "Calculator game with database storage",
+	"type": "project",
+	"require": {
+		"php": ">=7.4",
+		"ext-pdo": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"CalculatorGame\\": "src/CalculatorGame"
+		}
+	}
+}
