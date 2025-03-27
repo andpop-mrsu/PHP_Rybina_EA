@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Калькулятор - Игра</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+				background: #ffe6f2;
+				color: #6a1b4d;
+			}
+			.game-container,
+			.stats-container {
+				background: #ffccdd;
+				margin-bottom: 30px;
+				padding: 20px;
+				border: 1px solid #ff99bb;
+				border-radius: 10px;
+				box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+			}
+			.expression {
+				font-size: 24px;
+				margin: 20px 0;
+				padding: 10px;
+				background: #ff99bb;
+				color: white;
+				text-align: center;
+				border-radius: 5px;
+			}
+			input,
+			button {
+				padding: 10px 14px;
+				font-size: 16px;
+				border-radius: 5px;
+				border: none;
+			}
+			button {
+				cursor: pointer;
+				background: #e91e63;
+				color: white;
+				font-weight: bold;
+			}
+			button:hover {
+				background: #c2185b;
+			}
+			.message {
+				margin: 10px 0;
+				padding: 10px;
+				border-radius: 5px;
+			}
+			.correct {
+				background: #dff0d8;
+				color: #388e3c;
+			}
+			.incorrect {
+				background: #f8bbd0;
+				color: #d32f2f;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+				background: white;
+				border-radius: 5px;
+			}
+			th,
+			td {
+				border: 1px solid #ff99bb;
+				padding: 10px;
+				text-align: left;
+			}
+			th {
+				background-color: #ff80aa;
+				color: white;
+			}
+			tr:nth-child(even) {
+				background-color: #ffe6f2;
+			}
+			.tabs {
+				display: flex;
+				margin-bottom: 20px;
+			}
+			.tab {
+				padding: 10px 20px;
+				cursor: pointer;
+				background: #ff99bb;
+				color: white;
+				margin-right: 5px;
+				border-radius: 5px 5px 0 0;
+				font-weight: bold;
+			}
+			.tab.active {
+				background: #e91e63;
+			}
+			.tab-content {
+				display: none;
+			}
+			.tab-content.active {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 style="text-align: center">Калькулятор - Игра</h1>
+
+		<div class="tabs">
+			<div class="tab active" onclick="switchTab('game')">Игра</div>
+			<div class="tab" onclick="switchTab('stats')">Статистика</div>
+			<div class="tab" onclick="switchTab('history')">История игр</div>
+		</div>
+
+		<div id="game" class="tab-content active">
+			<div class="game-container">
+				<h2>Новая игра</h2>
+				<div id="player-form">
+					<label for="player-name">Ваше имя:</label>
+					<input type="text" id="player-name" required />
+					<button onclick="startGame()">Начать игру</button>
+				</div>
+
+				<div id="game-play" style="display: none">
+					<div class="expression" id="expression"></div>
+					<div>
+						<label for="answer">Ваш ответ:</label>
+						<input type="number" step="any" id="answer" />
+						<button onclick="checkAnswer()">Проверить</button>
+					</div>
+					<div class="message" id="message"></div>
+					<div>Счет: <span id="score">0</span></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="stats" class="tab-content">
+			<div class="stats-container">
+				<h2>Статистика текущей игры</h2>
+				<div id="current-stats"></div>
+			</div>
+		</div>
+
+		<div id="history" class="tab-content">
+			<div class="stats-container">
+				<h2>История всех игр</h2>
+				<table id="games-table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Игрок</th>
+							<th>Дата</th>
+							<th>Правильных ответов</th>
+							<th>Всего вопросов</th>
+							<th>Счет</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+
+			<div id="game-details" style="display: none; margin-top: 30px">
+				<h3>Детали игры</h3>
+				<table id="steps-table">
+					<thead>
+						<tr>
+							<th>Выражение</th>
+							<th>Ваш ответ</th>
+							<th>Правильный ответ</th>
+							<th>Результат</th>
+							<th>Время</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		<script src="../js/app.js"></script>
+	</body>
+</html>
